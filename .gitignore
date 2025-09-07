@@ -1,3 +1,4 @@
 db/postgres_data
 dbt-env/
 logs/
+.env
