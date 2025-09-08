@@ -1,5 +1,3 @@
-version: 2
-
 sources:
   - name: jaffle_shop
     description: A clone of a Postgres application database.
@@ -11,7 +9,7 @@ sources:
         columns:
           - name: id
             description: Primary key for customers.
-            tests:
+            data tests:
               - unique
               - not_null
 

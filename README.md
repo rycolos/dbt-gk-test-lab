@@ -1,5 +1,8 @@
 # dbt test lab - jaffle shop
 
+## Bring up postgres db
+From local machine - `docker compose up -d`
+
 ## Enter interative shell and start psql
 From local machine — `docker exec -it ad143f687e67 /bin/bash`
 From container — `psql -d raw -U postgres -W`
@@ -13,9 +16,9 @@ From local machine —
 From local machine — `docker cp ../data/  ad143f687e67:/usr/share/`
 
 From container —
-`COPY raw.jaffle_shop.customers (ID,FIRST_NAME,LAST_NAME) FROM '/usr/share/data/jaffle_shop_customers.csv' DELIMITER ',' CSV HEADER;`
-`COPY raw.jaffle_shop.orders (ID,USER_ID,ORDER_DATE,STATUS) FROM '/usr/share/data/jaffle_shop_orders.csv' DELIMITER ',' CSV HEADER;`
-`COPY raw.stripe.payment (ID,ORDERID,PAYMENTMETHOD,STATUS,AMOUNT,CREATED) FROM '/usr/share/data/stripe_payments.csv' DELIMITER ',' CSV HEADER;`cl
+* `COPY raw.jaffle_shop.customers (ID,FIRST_NAME,LAST_NAME) FROM '/usr/share/data/jaffle_shop_customers.csv' DELIMITER ',' CSV HEADER;`
+* `COPY raw.jaffle_shop.orders (ID,USER_ID,ORDER_DATE,STATUS) FROM '/usr/share/data/jaffle_shop_orders.csv' DELIMITER ',' CSV HEADER;`
+* `COPY raw.stripe.payment (ID,ORDERID,PAYMENTMETHOD,STATUS,AMOUNT,CREATED) FROM '/usr/share/data/stripe_payments.csv' DELIMITER ',' CSV HEADER;`cl
 
 ## dbt init
 In root directory of project - `dbt init`
