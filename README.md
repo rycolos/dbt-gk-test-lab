@@ -4,21 +4,21 @@
 From local machine - `docker compose up -d`
 
 ## Enter interative shell and start psql
-From local machine — `docker exec -it ad143f687e67 /bin/bash`
-From container — `psql -d raw -U postgres -W`
+From local machine — `docker exec -it {container id} /bin/bash`
+From container — `psql -d analytics_dbt -U postgres -W`
 
 ## Create analytics db and raw tables
 From local machine —
-`cat sql/create_analytics_db.sql | docker exec -i ad143f687e67  psql -U postgres -d raw`
-`cat sql/create_tables.sql | docker exec -i ad143f687e67  psql -U postgres -d raw`
+`cat sql/create_analytics_db.sql | docker exec -i {container id}  psql -U postgres -d analytics_dbt`
+`cat sql/create_tables.sql | docker exec -i {container id}  psql -U postgres -d analytics_dbt`
 
 ## Load data
-From local machine — `docker cp ../data/  ad143f687e67:/usr/share/`
+From local machine — `docker cp data/  {container id}:/usr/share/`
 
-From container —
-* `COPY raw.jaffle_shop.customers (ID,FIRST_NAME,LAST_NAME) FROM '/usr/share/data/jaffle_shop_customers.csv' DELIMITER ',' CSV HEADER;`
-* `COPY raw.jaffle_shop.orders (ID,USER_ID,ORDER_DATE,STATUS) FROM '/usr/share/data/jaffle_shop_orders.csv' DELIMITER ',' CSV HEADER;`
-* `COPY raw.stripe.payment (ID,ORDERID,PAYMENTMETHOD,STATUS,AMOUNT,CREATED) FROM '/usr/share/data/stripe_payments.csv' DELIMITER ',' CSV HEADER;`cl
+From container, in `psql` —
+* `COPY analytics_dbt.jaffle_shop.customers (ID,FIRST_NAME,LAST_NAME) FROM '/usr/share/data/jaffle_shop_customers.csv' DELIMITER ',' CSV HEADER;`
+* `COPY analytics_dbt.jaffle_shop.orders (ID,USER_ID,ORDER_DATE,STATUS) FROM '/usr/share/data/jaffle_shop_orders.csv' DELIMITER ',' CSV HEADER;`
+* `COPY analytics_dbt.stripe.payment (ID,ORDERID,PAYMENTMETHOD,STATUS,AMOUNT,CREATED) FROM '/usr/share/data/stripe_payments.csv' DELIMITER ',' CSV HEADER;`
 
 ## dbt init
 In root directory of project - `dbt init`

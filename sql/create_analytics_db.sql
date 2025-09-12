@@ -1,1 +1,1 @@
-CREATE DATABASE analytics;
+CREATE DATABASE analytics_dbt;

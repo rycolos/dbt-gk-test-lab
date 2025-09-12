@@ -1,6 +1,6 @@
 sources:
   - name: stripe
-    database: raw
+    database: analytics_dbt
     schema: stripe
     tables:
       - name: payment

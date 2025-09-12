@@ -38,6 +38,7 @@ models:
         +materialized: view
         +schema: stg__stripe
     marts:
+      +schema: marts
       finance:
         +materialized: table
       marketing:
